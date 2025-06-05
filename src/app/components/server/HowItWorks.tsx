@@ -1,0 +1,55 @@
+const HowItWorks = () => {
+  const steps = [
+    {
+      number: 1,
+      title: "Create Your Queues",
+      description:
+        "Set up multiple queues with custom settings, capacity limits, and notification preferences.",
+    },
+    {
+      number: 2,
+      title: "Customers Join Virtually",
+      description:
+        "Customers scan QR codes or use links to join queues remotely, with optional email verification.",
+    },
+    {
+      number: 3,
+      title: "Serve Efficiently",
+      description:
+        "Manage queues in real-time, serve customers with one click, and track performance analytics.",
+    },
+  ];
+
+  return (
+    <section id="how-it-works" className="py-20 bg-white dark:bg-gray-900">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center space-y-4 mb-16">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
+            How QueueFlow Works
+          </h2>
+          <p className="text-xl text-gray-600 dark:text-gray-300">
+            Simple setup, powerful results
+          </p>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          {steps.map((step) => (
+            <div key={step.number} className="text-center space-y-6">
+              <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto">
+                {step.number}
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+                {step.title}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300">
+                {step.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default HowItWorks;
