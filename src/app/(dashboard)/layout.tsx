@@ -4,6 +4,7 @@ import "../globals.css";
 import "../utils/firebase";
 import { ThemeProvider } from "../contexts/ThemeProvider";
 import { AuthProvider } from "../contexts/AuthProvider";
+import DashboardNav from "@/app/components/client/DashboardNav";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
   description: "An open source queue management system",
 };
 
-export default function RootLayout({
+export default function DashboardLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -32,7 +33,8 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <AuthProvider>
-            {children}
+            <DashboardNav>{children}</DashboardNav>
+
             {/* Footer */}
             <footer className="bg-gray-900 text-white py-16">
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
