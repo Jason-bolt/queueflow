@@ -1,10 +1,12 @@
 "use client";
-import { ProtectedRoutes, useAuth } from "@/app/contexts/AuthProvider";
+import { ProtectedRoutes } from "@/app/contexts/AuthProvider";
 
 const Dashboard = () => {
-  const { signOutUser, user } = useAuth();
-  console.log("User in Dashboard:", user);
-  return <button onClick={signOutUser}>Logout</button>;
+  return (
+    <div>
+      Dashboard
+    </div>
+  );
 };
 
 export default ProtectedRoutes(Dashboard);
