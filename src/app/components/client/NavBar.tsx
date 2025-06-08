@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import Link from "next/link";
 
 const NavBar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,7 @@ const NavBar = () => {
         <div className="flex justify-between items-center py-4">
           <div className="flex items-center">
             <div className="text-2xl font-bold text-blue-600">
-              <a href="#">QueueFlow</a>
+              <Link href="/">QueueFlow</Link>
             </div>
           </div>
 
@@ -23,19 +24,21 @@ const NavBar = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center space-x-8">
-            <a href="#features" className="navbar_text">
+            <Link href="/#features" className="navbar_text">
               Features
-            </a>
-            <a href="#how-it-works" className="navbar_text">
+            </Link>
+            <Link href="/#how-it-works" className="navbar_text">
               How It Works
-            </a>
-            <a href="#testimonials" className="navbar_text">
+            </Link>
+            <Link href="/#testimonials" className="navbar_text">
               Testimonials
-            </a>
-            <a href="#pricing" className="navbar_text">
+            </Link>
+            <Link href="/#pricing" className="navbar_text">
               Pricing
-            </a>
-            <button className="navbar_text">Sign In</button>
+            </Link>
+            <Link href="/signin" className="navbar_text">
+              Sign In
+            </Link>
             <button className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-all transform hover:scale-105">
               Start Free Trial
             </button>
@@ -60,35 +63,41 @@ const NavBar = () => {
       {isMenuOpen && (
         <div className="lg:hidden bg-white border-t border-gray-200 dark:bg-gray-800 dark:border-gray-700">
           <div className="px-4 py-2 space-y-4">
-            <a
-              href="#features"
+            <Link
+              href="/#features"
               className="navbar_text_mobile"
               onClick={() => setIsMenuOpen(false)}
             >
               Features
-            </a>
-            <a
-              href="#how-it-works"
+            </Link>
+            <Link
+              href="/#how-it-works"
               className="navbar_text_mobile"
               onClick={() => setIsMenuOpen(false)}
             >
               How It Works
-            </a>
-            <a
-              href="#testimonials"
+            </Link>
+            <Link
+              href="/#testimonials"
               className="navbar_text_mobile"
               onClick={() => setIsMenuOpen(false)}
             >
               Testimonials
-            </a>
-            <a
-              href="#pricing"
+            </Link>
+            <Link
+              href="/#pricing"
               className="navbar_text_mobile"
               onClick={() => setIsMenuOpen(false)}
             >
               Pricing
-            </a>
-            <button className="navbar_text_mobile">Sign In</button>
+            </Link>
+            <Link
+              href="/signin"
+              className="navbar_text_mobile"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Sign In
+            </Link>
             <button className="block w-full bg-blue-600 text-white px-6 py-2 rounded-lg">
               Start Free Trial
             </button>

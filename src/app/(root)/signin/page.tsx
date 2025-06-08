@@ -3,26 +3,26 @@
 
 import { ClosedRouteToLoggedInUsers, useAuth } from "@/app/contexts/AuthProvider";
 import auth from "@/app/utils/firebase";
-import { signUpFormOpts } from "@/app/utils/formHandler";
+import { signInFormOpts } from "@/app/utils/formHandler";
 import { useForm } from "@tanstack/react-form";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";	
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const SignUp = () => {
+const SignIn = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [, setError] = useState<string | null>(null);
-  const { signUpWithPassword } = useAuth();
+  const { signInWithPassword } = useAuth();
   const form = useForm({
-    ...signUpFormOpts,
+    ...signInFormOpts,
     onSubmit: async (values) => {
       // Handle form submission logic here
       const { email, password } = values.value!;
-      signUpWithPassword(email, password);
+      signInWithPassword(email, password);
       router.push("/dashboard");
     },
   });
@@ -49,7 +49,7 @@ const SignUp = () => {
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
       <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-          Sign Up for <span className="text-blue-600">QueueFlow</span>
+          Sign In to <span className="text-blue-600">QueueFlow</span>
         </h2>
         <form
           className="space-y-4"
@@ -139,46 +139,6 @@ const SignUp = () => {
               )}
             </form.Field>
           </div>
-          <div>
-            <label
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
-              htmlFor="confirmPassword"
-            >
-              Confirm Password
-            </label>
-            <form.Field
-              name="confirmPassword"
-              validators={{ onChangeAsyncDebounceMs: 300 }}
-            >
-              {(field) => (
-                <>
-                  <input
-                    type="password"
-                    id="confirmPassword"
-                    value={field.state.value}
-                    onChange={(e) => field.handleChange(e.target.value)}
-                    onBlur={field.handleBlur}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
-                  />
-                  {field.state.meta.errors.length > 0 && (
-                    <div className="text-red-500 text-sm mt-1">
-                      <em role="alert">
-                        {field.state.meta.errors.map(
-                          (error: any, index: number) => (
-                            <span key={index}>
-                              {typeof error === "string"
-                                ? error
-                                : error?.message ?? String(error)}
-                            </span>
-                          )
-                        )}
-                      </em>
-                    </div>
-                  )}
-                </>
-              )}
-            </form.Field>
-          </div>
 
           <form.Subscribe
             selector={(state) => [state.canSubmit, state.isSubmitting]}
@@ -193,7 +153,7 @@ const SignUp = () => {
                     : "bg-gray-400 cursor-not-allowed"
                 } transition-colors duration-200`}
               >
-                {isSubmitting ? "Signing Up..." : "Sign Up"}
+                {isSubmitting ? "Signing In..." : "Sign In"}
               </button>
             )}
           </form.Subscribe>
@@ -202,7 +162,7 @@ const SignUp = () => {
         {/* Google login */}
         <div className="mt-6 text-center">
           <p className="text-sm text-gray-600 dark:text-gray-400">
-            Or sign up with
+            Or sign in with
           </p>
           <button
             onClick={handleGoogleSignIn}
@@ -222,20 +182,9 @@ const SignUp = () => {
         </div>
 
         <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
-          Already have an account?{" "}
-          <Link href="/signin" className="text-blue-600 hover:underline">
-            Log in
-          </Link>
-        </p>
-
-        <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
-          By signing up, you agree to our{" "}
-          <Link href="/terms" className="text-blue-600 hover:underline">
-            Terms of Service
-          </Link>{" "}
-          and{" "}
-          <Link href="/privacy" className="text-blue-600 hover:underline">
-            Privacy Policy
+          Do not already have an account?{" "}
+          <Link href="/signup" className="text-blue-600 hover:underline">
+            Sign up
           </Link>
         </p>
 
@@ -252,4 +201,4 @@ const SignUp = () => {
   );
 };
 
-export default ClosedRouteToLoggedInUsers(SignUp);
+export default ClosedRouteToLoggedInUsers(SignIn);
