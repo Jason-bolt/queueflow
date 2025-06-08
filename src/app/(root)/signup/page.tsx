@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { ClosedRouteToLoggedInUsers, useAuth } from "@/app/contexts/AuthProvider";
+import { useAuth } from "@/app/contexts/AuthProvider";
 import auth from "@/app/utils/firebase";
 import { signUpFormOpts } from "@/app/utils/formHandler";
 import { useForm } from "@tanstack/react-form";
@@ -9,14 +9,14 @@ import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { ArrowLeft } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";	
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignUp = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [, setError] = useState<string | null>(null);
-  const { signUpWithPassword } = useAuth();
+  const { signUpWithPassword, loading: userLoading, user } = useAuth();
   const form = useForm({
     ...signUpFormOpts,
     onSubmit: async (values) => {
@@ -44,6 +44,11 @@ const SignUp = () => {
       setLoading(false);
     }
   };
+
+  if (!userLoading && user) {
+    router.push("/dashboard");
+    return <div>Redirecting...</div>;
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
@@ -252,4 +257,4 @@ const SignUp = () => {
   );
 };
 
-export default ClosedRouteToLoggedInUsers(SignUp);
+export default SignUp;

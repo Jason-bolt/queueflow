@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
-import { ClosedRouteToLoggedInUsers, useAuth } from "@/app/contexts/AuthProvider";
+import { useAuth } from "@/app/contexts/AuthProvider";
 import auth from "@/app/utils/firebase";
 import { signInFormOpts } from "@/app/utils/formHandler";
 import { useForm } from "@tanstack/react-form";
@@ -16,7 +16,7 @@ const SignIn = () => {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [, setError] = useState<string | null>(null);
-  const { signInWithPassword } = useAuth();
+  const { signInWithPassword, user, loading: userLoading } = useAuth();
   const form = useForm({
     ...signInFormOpts,
     onSubmit: async (values) => {
@@ -44,6 +44,11 @@ const SignIn = () => {
       setLoading(false);
     }
   };
+
+  if (!userLoading && user) {
+    router.push("/dashboard");
+    return <div>Redirecting...</div>;
+  }
 
   return (
     <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
@@ -201,4 +206,4 @@ const SignIn = () => {
   );
 };
 
-export default ClosedRouteToLoggedInUsers(SignIn);
+export default SignIn;

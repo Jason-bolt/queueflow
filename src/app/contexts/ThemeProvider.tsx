@@ -39,9 +39,7 @@ export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({
 
   if (!mounted) {
     // TODO: return a loading spinner or null
-    return <h1>
-      Loading... 
-    </h1>;
+    return null;
   }
 
   return (

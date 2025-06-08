@@ -34,7 +34,12 @@ import { ReactNode } from "react";
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
   const router = useRouter();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -70,7 +75,8 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
-  if (loading) {
+  // Only render children after mounted and loading is false
+  if (!mounted || loading) {
     return null; // Or a spinner
   }
 
@@ -99,29 +105,41 @@ export const useAuth = () => {
 };
 
 // In AuthProvider.tsx
-export const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
+export const ProtectedRoutes = ({
+  children,
+}: {
+  children: React.ReactNode;
+}) => {
   const router = useRouter();
   const { user, loading } = useAuth();
 
-  if (loading) {
+  useEffect(() => {
+    if (!loading && !user) {
+      router.push("/signin");
+    }
+  }, [user, loading, router]);
+
+  if (loading || !user) {
     return <div>Loading...</div>;
   }
-  if (!user) {
-    router.push("/signin");
-    return <div>Redirecting...</div>;
-  }
+
   return <>{children}</>;
 };
 
 export const ClosedRouteToLoggedInUsers = (
   Component: React.ComponentType<any>
 ) => {
-  return function ProtectedRoutes({ props }: { props: any }) {
+  return function WrappedComponent(props: any) {
     const router = useRouter();
     const { user, loading } = useAuth();
 
+    useEffect(() => {
+      if (!loading && user) {
+        router.push("/dashboard");
+      }
+    }, [user, loading, router]);
+
     if (!loading && user) {
-      router.push("/dashboard");
       return <div>Redirecting...</div>;
     }
     return <Component {...props} />;
