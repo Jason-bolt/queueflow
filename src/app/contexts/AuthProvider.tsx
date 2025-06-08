@@ -98,17 +98,19 @@ export const useAuth = () => {
   return context;
 };
 
-export const ProtectedRoutes = (Component: React.ComponentType<any>) => {
-  return function ProtectedRoutes({ props }: { props: any }) {
-    const router = useRouter();
-    const { user, loading } = useAuth();
+// In AuthProvider.tsx
+export const ProtectedRoutes = ({ children }: { children: React.ReactNode }) => {
+  const router = useRouter();
+  const { user, loading } = useAuth();
 
-    if (!loading && !user) {
-      router.push("/signin");
-      return <div>Redirecting...</div>;
-    }
-    return <Component {...props} />;
-  };
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+  if (!user) {
+    router.push("/signin");
+    return <div>Redirecting...</div>;
+  }
+  return <>{children}</>;
 };
 
 export const ClosedRouteToLoggedInUsers = (

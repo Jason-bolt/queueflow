@@ -1,12 +1,5 @@
-"use client";
-import { ProtectedRoutes } from "@/app/contexts/AuthProvider";
-
 const Dashboard = () => {
-  return (
-    <div>
-      Dashboard
-    </div>
-  );
+  return <div>Dashboard</div>;
 };
 
-export default ProtectedRoutes(Dashboard);
+export default Dashboard;

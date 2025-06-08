@@ -115,7 +115,7 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
               onClick={toggleSidebar}
               className="p-2 rounded-md lg:hidden hover:bg-gray-100 dark:hover:bg-gray-700"
             >
-              <X size={20} />
+              <X size={20} className="text-gray-700 dark:text-gray-300" />
             </button>
           </div>
 
@@ -175,7 +175,7 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
             <div className="flex items-center">
               <button
                 onClick={toggleSidebar}
-                className="p-2 rounded-md lg:hidden hover:bg-gray-100 mr-4"
+                className="p-2 rounded-md text-gray-700 lg:hidden hover:bg-gray-100 mr-4 dark:hover:bg-gray-700 dark:text-gray-300"
               >
                 <Menu size={20} />
               </button>
