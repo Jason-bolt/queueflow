@@ -2,8 +2,8 @@
 "use client";
 
 import { useAuth } from "@/app/contexts/AuthProvider";
-import auth from "@/app/utils/firebase";
-import { signInFormOpts } from "@/app/utils/formHandler";
+import auth from "@/utils/firebase";
+import { signInFormOpts } from "@/utils/formHandler";
 import { useForm } from "@tanstack/react-form";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { ArrowLeft } from "lucide-react";
@@ -156,7 +156,7 @@ const SignIn = () => {
                   canSubmit
                     ? "bg-blue-600 hover:bg-blue-700"
                     : "bg-gray-400 cursor-not-allowed"
-                } transition-colors duration-200`}
+                } transition-colors duration-200 hover:cursor-pointer`}
               >
                 {isSubmitting ? "Signing In..." : "Sign In"}
               </button>
@@ -171,7 +171,7 @@ const SignIn = () => {
           </p>
           <button
             onClick={handleGoogleSignIn}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 mt-2 bg-white w-full dark:bg-gray-700 border border-gray-300 dark:border-gray-600 rounded-md text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200"
+            className="inline-flex items-center justify-center gap-2 px-4 py-2 mt-2 bg-white w-full dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-md text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200 hover:shadow-md focus:outline-none hover:cursor-pointer"
             disabled={loading}
           >
             <Image

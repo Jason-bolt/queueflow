@@ -10,6 +10,7 @@ import {
   LogOut,
   ChevronDown,
   Users,
+  Bell,
 } from "lucide-react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
@@ -92,14 +93,6 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
     },
   ];
 
-  //   const menuItems = [
-  //     { icon: Home, label: "Dashboard", href: "/dashboard" },
-  //     { icon: User, label: "Profile", href: "/profile" },
-  //     { icon: FileText, label: "Documents", href: "/documents" },
-  //     { icon: Mail, label: "Messages", href: "/messages" },
-  //     { icon: Settings, label: "Settings", href: "/settings" },
-  //   ];
-
   return (
     <>
       <div className="flex h-screen bg-gray-100 dark:bg-gray-900">
@@ -125,7 +118,7 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
               {newMenuItems.map((item, index) => (
                 <div key={index}>
                   {item.section && (
-                    <p className="px-4 py-3 border-b border-gray-400 text-gray-400 text-sm font-medium dark:text-gray-300">
+                    <p className="px-4 py-3 border-b border-gray-300 text-gray-400 text-sm font-medium dark:text-gray-500 dark:border-gray-700">
                       {item.section}
                     </p>
                   )}
@@ -145,17 +138,6 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
                   )}
                 </div>
               ))}
-              {/* {menuItems.map((item, index) => (
-                <li key={index}>
-                  <Link
-                    href={item.href}
-                    className="flex items-center px-4 py-3 rounded-lg navbar_text hover:bg-blue-50 transition-colors dark:hover:bg-gray-700"
-                  >
-                    <item.icon size={20} className="mr-3" />
-                    {item.label}
-                  </Link>
-                </li>
-              ))} */}
             </ul>
           </nav>
         </div>
@@ -185,6 +167,10 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
             </div>
 
             <div className="flex items-center space-x-4">
+              {/* Notification bell */}
+              <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors dark:hover:bg-gray-700 hover:cursor-pointer">
+                <Bell size={20} className="text-gray-500 dark:text-gray-400" />
+              </button>
               {/* Profile Dropdown */}
               <div className="relative" ref={profileRef}>
                 <button
@@ -243,7 +229,7 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
           </header>
 
           {/* Main Content Area */}
-          <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50 p-6">
+          <main className="flex-1 overflow-x-hidden overflow-y-auto bg-gray-50">
             {children}
           </main>
         </div>

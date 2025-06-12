@@ -1,11 +1,11 @@
 import { ArrowRight, Star, Play } from "lucide-react";
 
-import AnimatedStats from "../components/client/AnimatedStats";
-import NavBar from "../components/client/NavBar";
-import FeaturesSection from "../components/server/FeaturesSection";
-import HeroVisual from "../components/server/HeroVisual";
-import HowItWorks from "../components/server/HowItWorks";
-import Pricing from "../components/server/Pricing";
+import AnimatedStats from "../../components/client/AnimatedStats";
+import NavBar from "../../components/client/NavBar";
+import FeaturesSection from "../../components/server/FeaturesSection";
+import HeroVisual from "../../components/server/HeroVisual";
+import HowItWorks from "../../components/server/HowItWorks";
+import Pricing from "../../components/server/Pricing";
 
 const QueueFlowHomepage = () => {
   const testimonials = [

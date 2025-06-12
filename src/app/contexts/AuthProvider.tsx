@@ -8,7 +8,7 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import auth from "@/app/utils/firebase";
+import auth from "@/utils/firebase";
 import { useRouter } from "next/navigation";
 
 interface AuthContextType {
