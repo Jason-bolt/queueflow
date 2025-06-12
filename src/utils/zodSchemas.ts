@@ -32,3 +32,12 @@ export const SigninUserSchema = z.object({
         "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.",
     }),
 });
+
+export const NewQueueSchema = z.object({
+  name: z.string(),
+  description: z.string().optional(),
+  isEmailRequired: z.boolean(),
+  maxSize: z.string(),
+  expiresAt: z.coerce.date().optional(),
+  queuePrefix: z.string().optional(),
+});

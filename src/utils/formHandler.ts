@@ -1,5 +1,10 @@
 import { formOptions } from "@tanstack/react-form/nextjs";
-import { SigninUserSchema, SignupUserSchema } from "./zodSchemas";
+import {
+  NewQueueSchema,
+  SigninUserSchema,
+  SignupUserSchema,
+} from "./zodSchemas";
+import { getFormattedDateFromTimestamp } from "./helpers";
 
 // You can pass other form options here
 export const signUpFormOpts = formOptions({
@@ -20,5 +25,21 @@ export const signInFormOpts = formOptions({
   },
   validators: {
     onSubmit: SigninUserSchema,
+  },
+});
+
+export const NewQueueFormOpts = formOptions({
+  defaultValues: {
+    name: "",
+    isEmailRequired: false,
+    maxSize: "1",
+    description: "",
+    expiresAt: getFormattedDateFromTimestamp(
+      Date.now() + 7 * 24 * 60 * 60 * 1000
+    ), // Default to one week from now
+    queuePrefix: "QF",
+  },
+  validators: {
+    onSubmit: NewQueueSchema,
   },
 });

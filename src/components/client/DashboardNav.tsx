@@ -18,10 +18,11 @@ import { useAuth } from "@/app/contexts/AuthProvider";
 
 const DashboardNav = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [pageTitle, setPageTitle] = useState("Dashboard");
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const profileRef = useRef<HTMLDivElement>(null);
   const { signOutUser } = useAuth();
+
+  const [pageTitle, setPageTitle] = useState("Dashboard");
 
   useEffect(() => {
     // Set the page title based on the current route
@@ -129,6 +130,10 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
                           <Link
                             href={subItem.href}
                             className="flex items-center px-4 py-3 rounded-lg navbar_text hover:bg-blue-50 transition-colors dark:hover:bg-gray-700"
+                            onClick={() => {
+                              setIsOpen(false);
+                              setIsProfileOpen(false);
+                            }}
                           >
                             <subItem.icon size={20} className="mr-3" />
                             {subItem.label}

@@ -38,7 +38,7 @@ const SignIn = () => {
       router.push("/dashboard"); // Replace with your desired redirect path
     } catch (err: any) {
       console.error("Google Sign-in Error:", err);
-      // Handle errors (e.g., user cancels popup, network issues)
+      // TODO: Handle errors (e.g., user cancels popup, network issues)
       setError(err.message || "An error occurred during Google sign-in.");
     } finally {
       setLoading(false);
@@ -83,7 +83,7 @@ const SignIn = () => {
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="text-gray-800 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   />
                   {field.state.meta.errors.length > 0 && (
                     <div className="text-red-500 text-sm mt-1">
@@ -123,7 +123,7 @@ const SignIn = () => {
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="text-gray-800 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
                   />
                   {field.state.meta.errors.length > 0 && (
                     <div className="text-red-500 text-sm mt-1">

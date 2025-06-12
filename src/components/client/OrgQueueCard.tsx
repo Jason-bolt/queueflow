@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const OrgQueueCard = () => {
   return (
@@ -39,9 +40,11 @@ const OrgQueueCard = () => {
         />
       </div>
 
-      <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-colors duration-200 hover:cursor-pointer">
-        Manage Queue
-      </button>
+      <Link href={`/dashboard/queue/${"first-queue-id"}`} className="w-full">
+        <button className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 rounded-lg transition-colors duration-200 hover:cursor-pointer">
+          Manage Queue
+        </button>
+      </Link>
     </div>
   );
 };
