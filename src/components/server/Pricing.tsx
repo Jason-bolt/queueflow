@@ -54,27 +54,27 @@ const Pricing = () => {
   return (
     <section
       id="pricing"
-      className="py-20 bg-gradient-to-tr from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800"
+      className="bg-gradient-to-tr from-blue-50 to-purple-50 py-20 dark:from-gray-900 dark:to-gray-800"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-4 mb-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 space-y-4 text-center">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             Find a plan that works for you.
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-400">
-            <span className="text-blue-600 font-bold">QueueFlow</span> has
+            <span className="font-bold text-blue-600">QueueFlow</span> has
             scalable pricing to fit any business size, from startups to
             enterprises.
           </p>
 
-          <div className="flex flex-col items-center justify-center px-3 space-y-8 space-x-0 xl:space-y-0 xl:flex-row xl:space-x-8 mt-8">
+          <div className="mt-8 flex flex-col items-center justify-center space-y-8 space-x-0 px-3 xl:flex-row xl:space-y-0 xl:space-x-8">
             {pricingPlans.map((plan, index) => (
               <div
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-lg w-full lg:min-w-96 dark:bg-gray-800 dark:shadow-gray-700"
+                className="w-full rounded-2xl bg-white p-8 shadow-lg lg:min-w-96 dark:bg-gray-800 dark:shadow-gray-700"
               >
                 <div className="space-y-4 text-start">
-                  <h1 className="text-gray-700 font-bold text-3xl dark:text-gray-300">
+                  <h1 className="text-3xl font-bold text-gray-700 dark:text-gray-300">
                     {plan.name}
                   </h1>
                   <p className="text-gray-500 dark:text-gray-400">
@@ -83,14 +83,14 @@ const Pricing = () => {
                   <div className="text-2xl font-bold text-gray-900 dark:text-white">
                     {plan.price}
                   </div>
-                  <ul className="space-y-2 mt-4 border-t pt-4">
+                  <ul className="mt-4 space-y-2 border-t pt-4">
                     {plan.features.map((feature, featureIndex) => (
                       <li
                         key={featureIndex}
                         className="flex items-center space-x-2 text-gray-600 dark:text-gray-400"
                       >
                         <svg
-                          className="w-5 h-5 text-blue-600 dark:text-blue-400"
+                          className="h-5 w-5 text-blue-600 dark:text-blue-400"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -101,7 +101,7 @@ const Pricing = () => {
                     ))}
                   </ul>
                   <Link href="/signup">
-                    <button className="w-full mt-6 bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:cursor-pointer hover:bg-blue-700 transition duration-200">
+                    <button className="mt-6 w-full rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition duration-200 hover:cursor-pointer hover:bg-blue-700">
                       {plan.cta}
                     </button>
                   </Link>

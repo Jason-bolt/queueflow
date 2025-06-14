@@ -41,34 +41,34 @@ const QueueFlowHomepage = () => {
       <NavBar />
 
       {/* Hero Section */}
-      <section className="pt-24 pb-20 bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-gray-900 dark:via-none dark:to-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+      <section className="bg-gradient-to-br from-blue-50 via-white to-purple-50 pt-24 pb-20 dark:via-none dark:from-gray-900 dark:to-gray-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 bg-blue-100 text-blue-800 rounded-full text-sm font-medium dark:bg-blue-900 dark:text-blue-300">
+                <div className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-800 dark:bg-blue-900 dark:text-blue-300">
                   🎉 Trusted by 50,000+ businesses worldwide
                 </div>
-                <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 leading-tight dark:text-white">
+                <h1 className="text-5xl leading-tight font-bold text-gray-900 lg:text-6xl dark:text-white">
                   Eliminate Wait Times,{" "}
                   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent dark:from-blue-400 dark:to-purple-400">
                     Maximize Satisfaction
                   </span>
                 </h1>
-                <p className="text-xl text-gray-600 leading-relaxed dark:text-gray-300">
+                <p className="text-xl leading-relaxed text-gray-600 dark:text-gray-300">
                   Transform your customer service with intelligent queue
                   management. Let customers join virtually, track their position
                   in real-time, and serve them efficiently.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <button className="bg-blue-600 text-white px-8 py-4 rounded-xl font-semibold hover:bg-blue-700 transition-all transform hover:scale-105 shadow-lg flex items-center justify-center gap-2">
+              <div className="flex flex-col gap-4 sm:flex-row">
+                <button className="flex transform items-center justify-center gap-2 rounded-xl bg-blue-600 px-8 py-4 font-semibold text-white shadow-lg transition-all hover:scale-105 hover:bg-blue-700">
                   Start Free Trial
-                  <ArrowRight className="w-5 h-5" />
+                  <ArrowRight className="h-5 w-5" />
                 </button>
-                <button className="border-2 border-gray-300 text-gray-700 px-8 py-4 rounded-xl font-semibold hover:border-blue-600 hover:text-blue-600 transition-all flex items-center justify-center gap-2 dark:border-gray-600 dark:text-gray-300 dark:hover:border-blue-400 dark:hover:text-blue-400">
-                  <Play className="w-5 h-5" />
+                <button className="flex items-center justify-center gap-2 rounded-xl border-2 border-gray-300 px-8 py-4 font-semibold text-gray-700 transition-all hover:border-blue-600 hover:text-blue-600 dark:border-gray-600 dark:text-gray-300 dark:hover:border-blue-400 dark:hover:text-blue-400">
+                  <Play className="h-5 w-5" />
                   Watch Demo
                 </button>
               </div>
@@ -92,31 +92,31 @@ const QueueFlowHomepage = () => {
       {/* Testimonials Section */}
       <section
         id="testimonials"
-        className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800"
+        className="bg-gradient-to-br from-blue-50 to-purple-50 py-20 dark:from-gray-900 dark:to-gray-800"
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center space-y-4 mb-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-16 space-y-4 text-center">
             <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
               Loved by businesses worldwide
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400">
-              See how <span className="text-blue-600 font-bold">QueueFlow</span>{" "}
+              See how <span className="font-bold text-blue-600">QueueFlow</span>{" "}
               transforms customer experiences
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid gap-8 md:grid-cols-3">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="bg-white p-8 rounded-2xl shadow-lg dark:bg-gray-800 dark:shadow-gray-700"
+                className="rounded-2xl bg-white p-8 shadow-lg dark:bg-gray-800 dark:shadow-gray-700"
               >
                 <div className="space-y-4">
                   <div className="flex gap-1">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star
                         key={i}
-                        className="w-5 h-5 text-yellow-400 fill-current"
+                        className="h-5 w-5 fill-current text-yellow-400"
                       />
                     ))}
                   </div>
@@ -130,7 +130,7 @@ const QueueFlowHomepage = () => {
                     <div className="text-sm text-gray-600 dark:text-gray-300">
                       {testimonial.role}
                     </div>
-                    <div className="text-sm text-blue-600 font-medium dark:text-blue-400">
+                    <div className="text-sm font-medium text-blue-600 dark:text-blue-400">
                       {testimonial.company}
                     </div>
                   </div>
@@ -145,25 +145,25 @@ const QueueFlowHomepage = () => {
       <Pricing />
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-900 dark:to-purple-900">
-        <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
+      <section className="bg-gradient-to-r from-blue-600 to-purple-600 py-20 dark:from-blue-900 dark:to-purple-900">
+        <div className="mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <div className="space-y-8">
-            <h2 className="text-4xl md:text-5xl font-bold text-white">
+            <h2 className="text-4xl font-bold text-white md:text-5xl">
               Ready to eliminate wait times?
             </h2>
-            <p className="text-xl text-blue-100 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-xl text-blue-100">
               Join thousands of businesses already using QueueFlow to provide
               better customer experiences and streamline operations.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-gray-100 transition-all transform hover:scale-105 shadow-lg">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
+              <button className="transform rounded-xl bg-white px-8 py-4 font-semibold text-blue-600 shadow-lg transition-all hover:scale-105 hover:bg-gray-100">
                 Start Free Trial - No Credit Card Required
               </button>
-              <button className="border-2 border-white text-white px-8 py-4 rounded-xl font-semibold hover:bg-white hover:text-blue-600 transition-all">
+              <button className="rounded-xl border-2 border-white px-8 py-4 font-semibold text-white transition-all hover:bg-white hover:text-blue-600">
                 Schedule Demo
               </button>
             </div>
-            <div className="text-blue-100 text-sm">
+            <div className="text-sm text-blue-100">
               ✓ 14-day free trial ✓ Setup in minutes ✓ Cancel anytime
             </div>
           </div>

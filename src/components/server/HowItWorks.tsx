@@ -21,9 +21,9 @@ const HowItWorks = () => {
   ];
 
   return (
-    <section id="how-it-works" className="py-20 bg-white dark:bg-gray-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center space-y-4 mb-16">
+    <section id="how-it-works" className="bg-white py-20 dark:bg-gray-900">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mb-16 space-y-4 text-center">
           <h2 className="text-4xl font-bold text-gray-900 dark:text-white">
             How QueueFlow Works
           </h2>
@@ -32,10 +32,10 @@ const HowItWorks = () => {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-8">
+        <div className="grid gap-8 lg:grid-cols-3">
           {steps.map((step) => (
-            <div key={step.number} className="text-center space-y-6">
-              <div className="w-16 h-16 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto">
+            <div key={step.number} className="space-y-6 text-center">
+              <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-600 text-2xl font-bold text-white">
                 {step.number}
               </div>
               <h3 className="text-xl font-semibold text-gray-900 dark:text-white">

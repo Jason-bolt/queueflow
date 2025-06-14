@@ -23,21 +23,21 @@ const NewQueueButtonWithForm = () => {
   };
 
   return (
-    <section className="w-full flex flex-col items-center justify-center">
-      <div className="flex flex-col items-start w-full md:items-center md:space-y-0 md:flex-row md:justify-between">
+    <section className="flex w-full flex-col items-center justify-center">
+      <div className="flex w-full flex-col items-start md:flex-row md:items-center md:justify-between md:space-y-0">
         <div className="mb-4 md:mt-0">
-          <h1 className="text-gray-800 text-3xl font-semibold dark:text-gray-300">
+          <h1 className="text-3xl font-semibold text-gray-800 dark:text-gray-300">
             Your Queues
           </h1>
-          <p className="text-gray-500 text-sm">
+          <p className="text-sm text-gray-500">
             Manage and monitor all your business queues
           </p>
         </div>
         <button
-          className="flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 hover:cursor-pointer"
+          className="flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-colors duration-200 hover:cursor-pointer hover:bg-blue-700"
           onClick={toggleCreateForm}
         >
-          <Plus size={20} className="" />
+          <Plus size={20} />
           <span className="ml-2">Create New Queue</span>
         </button>
       </div>
@@ -49,15 +49,15 @@ const NewQueueButtonWithForm = () => {
             e.stopPropagation();
             form.handleSubmit();
           }}
-          className="mt-6 w-full max-w-3xl bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md"
+          className="mt-6 w-full max-w-3xl rounded-lg bg-white p-6 shadow-md dark:bg-gray-800"
           role="form"
         >
-          <h2 className="text-xl font-semibold text-gray-800 dark:text-gray-300 mb-4">
+          <h2 className="mb-4 text-xl font-semibold text-gray-800 dark:text-gray-300">
             Create a New Queue
           </h2>
           <div className="mb-4">
             <label
-              className="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="mb-1 block font-medium text-gray-700 dark:text-gray-300"
               htmlFor="name"
             >
               Queue Name
@@ -74,19 +74,19 @@ const NewQueueButtonWithForm = () => {
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
-                    className="w-full px-3 py-2 border border-gray-300 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   />
                   {field.state.meta.errors.length > 0 && (
-                    <div className="text-red-500 text-sm mt-1">
+                    <div className="mt-1 text-sm text-red-500">
                       <em role="alert">
                         {field.state.meta.errors.map(
                           (error: any, index: number) => (
                             <span key={index}>
                               {typeof error === "string"
                                 ? error
-                                : error?.message ?? String(error)}
+                                : (error?.message ?? String(error))}
                             </span>
-                          )
+                          ),
                         )}
                       </em>
                     </div>
@@ -97,7 +97,7 @@ const NewQueueButtonWithForm = () => {
           </div>
           <div className="mb-4">
             <label
-              className="block font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="mb-1 block font-medium text-gray-700 dark:text-gray-300"
               htmlFor="description"
             >
               Description
@@ -111,19 +111,19 @@ const NewQueueButtonWithForm = () => {
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
                     rows={3}
-                    className="w-full px-3 py-2 border border-gray-300 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   />
                   {field.state.meta.errors.length > 0 && (
-                    <div className="text-red-500 text-sm mt-1">
+                    <div className="mt-1 text-sm text-red-500">
                       <em role="alert">
                         {field.state.meta.errors.map(
                           (error: any, index: number) => (
                             <span key={index}>
                               {typeof error === "string"
                                 ? error
-                                : error?.message ?? String(error)}
+                                : (error?.message ?? String(error))}
                             </span>
-                          )
+                          ),
                         )}
                       </em>
                     </div>
@@ -133,11 +133,11 @@ const NewQueueButtonWithForm = () => {
             </form.Field>
           </div>
           {/* <section className="mb-4 w-full flex flex-col gap-4 items-center justify-between md:flex-row md:space-x-5"> */}
-          <section className="mb-4 w-full gap-7 grid grid-cols-1 md:grid-cols-2 items-center justify-between">
+          <section className="mb-4 grid w-full grid-cols-1 items-center justify-between gap-7 md:grid-cols-2">
             {/* Max size */}
-            <div className="flex w-full flex-col gap-1 items-center justify-center md:gap-4 md:flex-row">
+            <div className="flex w-full flex-col items-center justify-center gap-1 md:flex-row md:gap-4">
               <label
-                className="block whitespace-nowrap font-medium text-gray-700 dark:text-gray-300 mb-1"
+                className="mb-1 block font-medium whitespace-nowrap text-gray-700 dark:text-gray-300"
                 htmlFor="name"
               >
                 Max size:
@@ -156,19 +156,19 @@ const NewQueueButtonWithForm = () => {
                       min={1}
                       max={1000}
                       onBlur={field.handleBlur}
-                      className="w-full px-3 py-2 border border-gray-300 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     {field.state.meta.errors.length > 0 && (
-                      <div className="text-red-500 text-sm mt-1">
+                      <div className="mt-1 text-sm text-red-500">
                         <em role="alert">
                           {field.state.meta.errors.map(
                             (error: any, index: number) => (
                               <span key={index}>
                                 {typeof error === "string"
                                   ? error
-                                  : error?.message ?? String(error)}
+                                  : (error?.message ?? String(error))}
                               </span>
-                            )
+                            ),
                           )}
                         </em>
                       </div>
@@ -179,9 +179,9 @@ const NewQueueButtonWithForm = () => {
             </div>
 
             {/* Expires At */}
-            <div className="flex w-full flex-col gap-1 items-center justify-center md:gap-4 md:flex-row">
+            <div className="flex w-full flex-col items-center justify-center gap-1 md:flex-row md:gap-4">
               <label
-                className="block whitespace-nowrap font-medium text-gray-700 dark:text-gray-300 mb-1"
+                className="mb-1 block font-medium whitespace-nowrap text-gray-700 dark:text-gray-300"
                 htmlFor="name"
               >
                 Expires at:
@@ -199,19 +199,19 @@ const NewQueueButtonWithForm = () => {
                       onChange={(e) => console.log(e.target.value)}
                       min={1}
                       onBlur={field.handleBlur}
-                      className="w-full px-3 py-2 border border-gray-300 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     {field.state.meta.errors.length > 0 && (
-                      <div className="text-red-500 text-sm mt-1">
+                      <div className="mt-1 text-sm text-red-500">
                         <em role="alert">
                           {field.state.meta.errors.map(
                             (error: any, index: number) => (
                               <span key={index}>
                                 {typeof error === "string"
                                   ? error
-                                  : error?.message ?? String(error)}
+                                  : (error?.message ?? String(error))}
                               </span>
-                            )
+                            ),
                           )}
                         </em>
                       </div>
@@ -222,9 +222,9 @@ const NewQueueButtonWithForm = () => {
             </div>
 
             {/* Queue prefix */}
-            <div className="flex w-full flex-col gap-1 items-center justify-center md:gap-4 md:flex-row">
+            <div className="flex w-full flex-col items-center justify-center gap-1 md:flex-row md:gap-4">
               <label
-                className="block whitespace-nowrap font-medium text-gray-700 dark:text-gray-300 mb-1"
+                className="mb-1 block font-medium whitespace-nowrap text-gray-700 dark:text-gray-300"
                 htmlFor="name"
               >
                 Queue prefix:
@@ -242,19 +242,19 @@ const NewQueueButtonWithForm = () => {
                       onChange={(e) => field.handleChange(e.target.value)}
                       min={1}
                       onBlur={field.handleBlur}
-                      className="w-full px-3 py-2 uppercase border border-gray-300 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 uppercase focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     {field.state.meta.errors.length > 0 && (
-                      <div className="text-red-500 text-sm mt-1">
+                      <div className="mt-1 text-sm text-red-500">
                         <em role="alert">
                           {field.state.meta.errors.map(
                             (error: any, index: number) => (
                               <span key={index}>
                                 {typeof error === "string"
                                   ? error
-                                  : error?.message ?? String(error)}
+                                  : (error?.message ?? String(error))}
                               </span>
-                            )
+                            ),
                           )}
                         </em>
                       </div>
@@ -265,9 +265,9 @@ const NewQueueButtonWithForm = () => {
             </div>
 
             {/* Is Email Requeired */}
-            <div className="flex mx-auto w-fit gap-4 items-center justify-center md:mx-0">
+            <div className="mx-auto flex w-fit items-center justify-center gap-4 md:mx-0">
               <label
-                className="block whitespace-nowrap font-medium text-gray-700 dark:text-gray-300 mb-1"
+                className="mb-1 block font-medium whitespace-nowrap text-gray-700 dark:text-gray-300"
                 htmlFor="name"
               >
                 Is email required?:
@@ -284,19 +284,19 @@ const NewQueueButtonWithForm = () => {
                       checked={field.state.value}
                       onChange={(e) => field.handleChange(e.target.checked)}
                       onBlur={field.handleBlur}
-                      className="w-full px-3 py-2 border border-gray-300 text-gray-800 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                      className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                     />
                     {field.state.meta.errors.length > 0 && (
-                      <div className="text-red-500 text-sm mt-1">
+                      <div className="mt-1 text-sm text-red-500">
                         <em role="alert">
                           {field.state.meta.errors.map(
                             (error: any, index: number) => (
                               <span key={index}>
                                 {typeof error === "string"
                                   ? error
-                                  : error?.message ?? String(error)}
+                                  : (error?.message ?? String(error))}
                               </span>
-                            )
+                            ),
                           )}
                         </em>
                       </div>
@@ -307,16 +307,16 @@ const NewQueueButtonWithForm = () => {
             </div>
           </section>
 
-          <button className="w-full mt-8 mb-2 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500">
-            <Plus size={20} className="inline mr-2" />
+          <button className="mt-8 mb-2 flex w-full items-center justify-center rounded-lg bg-blue-600 px-4 py-2 font-semibold text-white transition-colors duration-200 hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+            <Plus size={20} className="mr-2 inline" />
             Create Queue
           </button>
 
           <button
-            className="w-full flex items-center justify-center bg-gray-300 hover:bg-gray-400 text-gray-800 font-semibold py-2 px-4 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 dark:bg-gray-600 dark:hover:bg-gray-700 dark:text-white"
+            className="flex w-full items-center justify-center rounded-lg bg-gray-300 px-4 py-2 font-semibold text-gray-800 transition-colors duration-200 hover:bg-gray-400 focus:ring-2 focus:ring-gray-500 focus:outline-none dark:bg-gray-600 dark:text-white dark:hover:bg-gray-700"
             onClick={() => {
-                setIsCreateFormOpen(false);
-                form.reset();
+              setIsCreateFormOpen(false);
+              form.reset();
             }}
             type="button"
             aria-label="Cancel"

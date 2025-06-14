@@ -29,10 +29,10 @@ const Pagination = ({ totalCount }: PaginationProps) => {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         disabled={currentPage === 1}
-        className="p-2 rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:disabled:bg-gray-600 dark:disabled:text-gray-500 hover:cursor-pointer"
+        className="rounded-md border border-gray-300 bg-white p-2 text-gray-500 transition-colors hover:cursor-pointer hover:bg-gray-50 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:disabled:bg-gray-600 dark:disabled:text-gray-500"
         aria-label="Previous page"
       >
-        <ChevronLeft className="w-4 h-4" />
+        <ChevronLeft className="h-4 w-4" />
       </button>
 
       {/* Page Numbers */}
@@ -46,10 +46,10 @@ const Pagination = ({ totalCount }: PaginationProps) => {
           window.scrollTo({ top: 0, behavior: "smooth" });
         }}
         disabled={currentPage === totalPages}
-        className="p-2 rounded-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50 disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed transition-colors dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:disabled:bg-gray-600 dark:disabled:text-gray-500 hover:cursor-pointer"
+        className="rounded-md border border-gray-300 bg-white p-2 text-gray-500 transition-colors hover:cursor-pointer hover:bg-gray-50 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-gray-700 dark:disabled:bg-gray-600 dark:disabled:text-gray-500"
         aria-label="Next page"
       >
-        <ChevronRight className="w-4 h-4" />
+        <ChevronRight className="h-4 w-4" />
       </button>
     </div>
   );

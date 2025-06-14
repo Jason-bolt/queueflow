@@ -9,22 +9,22 @@ const AnimatedStats = () => {
     {
       number: "50K+",
       label: "Businesses Served",
-      icon: <Users className="w-6 h-6" />,
+      icon: <Users className="h-6 w-6" />,
     },
     {
       number: "2M+",
       label: "Queue Entries",
-      icon: <Clock className="w-6 h-6" />,
+      icon: <Clock className="h-6 w-6" />,
     },
     {
       number: "85%",
       label: "Reduction in Wait Times",
-      icon: <BarChart3 className="w-6 h-6" />,
+      icon: <BarChart3 className="h-6 w-6" />,
     },
     {
       number: "99.9%",
       label: "Uptime Guarantee",
-      icon: <Shield className="w-6 h-6" />,
+      icon: <Shield className="h-6 w-6" />,
     },
   ];
 
@@ -36,9 +36,9 @@ const AnimatedStats = () => {
   }, []);
 
   return (
-    <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 dark:bg-gray-800 dark:border-gray-700">
+    <div className="rounded-2xl border border-gray-100 bg-white p-6 shadow-lg dark:border-gray-700 dark:bg-gray-800">
       <div className="flex items-center gap-4">
-        <div className="p-3 bg-blue-600 rounded-xl">
+        <div className="rounded-xl bg-blue-600 p-3">
           {stats[currentStat].icon}
         </div>
         <div>

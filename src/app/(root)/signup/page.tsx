@@ -51,9 +51,9 @@ const SignUp = () => {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
-      <div className="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg w-full max-w-md">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+    <section className="flex min-h-screen items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg dark:bg-gray-800">
+        <h2 className="mb-6 text-center text-2xl font-bold text-gray-900 dark:text-white">
           Sign Up for <span className="text-blue-600">QueueFlow</span>
         </h2>
         <form
@@ -66,7 +66,7 @@ const SignUp = () => {
         >
           <div>
             <label
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
               htmlFor="email"
             >
               Email Address
@@ -83,19 +83,19 @@ const SignUp = () => {
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
-                    className="text-gray-800 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   />
                   {field.state.meta.errors.length > 0 && (
-                    <div className="text-red-500 text-sm mt-1">
+                    <div className="mt-1 text-sm text-red-500">
                       <em role="alert">
                         {field.state.meta.errors.map(
                           (error: any, index: number) => (
                             <span key={index}>
                               {typeof error === "string"
                                 ? error
-                                : error?.message ?? String(error)}
+                                : (error?.message ?? String(error))}
                             </span>
-                          )
+                          ),
                         )}
                       </em>
                     </div>
@@ -106,7 +106,7 @@ const SignUp = () => {
           </div>
           <div>
             <label
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
               htmlFor="password"
             >
               Password
@@ -123,19 +123,19 @@ const SignUp = () => {
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
-                    className="text-gray-800 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   />
                   {field.state.meta.errors.length > 0 && (
-                    <div className="text-red-500 text-sm mt-1">
+                    <div className="mt-1 text-sm text-red-500">
                       <em role="alert">
                         {field.state.meta.errors.map(
                           (error: any, index: number) => (
                             <span key={index}>
                               {typeof error === "string"
                                 ? error
-                                : error?.message ?? String(error)}
+                                : (error?.message ?? String(error))}
                             </span>
-                          )
+                          ),
                         )}
                       </em>
                     </div>
@@ -146,7 +146,7 @@ const SignUp = () => {
           </div>
           <div>
             <label
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1"
+              className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-300"
               htmlFor="confirmPassword"
             >
               Confirm Password
@@ -163,19 +163,19 @@ const SignUp = () => {
                     value={field.state.value}
                     onChange={(e) => field.handleChange(e.target.value)}
                     onBlur={field.handleBlur}
-                    className="text-gray-800 w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    className="w-full rounded-md border border-gray-300 px-3 py-2 text-gray-800 focus:ring-2 focus:ring-blue-500 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white"
                   />
                   {field.state.meta.errors.length > 0 && (
-                    <div className="text-red-500 text-sm mt-1">
+                    <div className="mt-1 text-sm text-red-500">
                       <em role="alert">
                         {field.state.meta.errors.map(
                           (error: any, index: number) => (
                             <span key={index}>
                               {typeof error === "string"
                                 ? error
-                                : error?.message ?? String(error)}
+                                : (error?.message ?? String(error))}
                             </span>
-                          )
+                          ),
                         )}
                       </em>
                     </div>
@@ -192,10 +192,10 @@ const SignUp = () => {
               <button
                 type="submit"
                 disabled={!canSubmit || isSubmitting}
-                className={`w-full px-4 py-2 text-white font-semibold rounded-md focus:outline-none ${
+                className={`w-full rounded-md px-4 py-2 font-semibold text-white focus:outline-none ${
                   canSubmit
                     ? "bg-blue-600 hover:bg-blue-700"
-                    : "bg-gray-400 cursor-not-allowed"
+                    : "cursor-not-allowed bg-gray-400"
                 } transition-colors duration-200 hover:cursor-pointer`}
               >
                 {isSubmitting ? "Signing Up..." : "Sign Up"}
@@ -211,30 +211,30 @@ const SignUp = () => {
           </p>
           <button
             onClick={handleGoogleSignIn}
-            className="inline-flex items-center justify-center gap-2 px-4 py-2 mt-2 bg-white w-full dark:bg-gray-700 border border-gray-400 dark:border-gray-600 rounded-md text-gray-800 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors duration-200 hover:shadow-md focus:outline-none hover:cursor-pointer"
+            className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-md border border-gray-400 bg-white px-4 py-2 text-gray-800 transition-colors duration-200 hover:cursor-pointer hover:bg-gray-50 hover:shadow-md focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
             aria-label="Sign up with Google"
             disabled={loading}
           >
             <Image
               src="/google_icon.png"
               alt="Google Icon"
-              className="w-5 h-5"
+              className="h-5 w-5"
               width={500}
               height={500}
             />
             {/* <a href="https://brandlogos.net/google-icon-2025-108949.html">Google Tag Manager logo</a> */}
-            <h1 className="font-bold text-xl">Google</h1>
+            <h1 className="text-xl font-bold">Google</h1>
           </button>
         </div>
 
-        <p className="mt-4 text-sm text-gray-600 dark:text-gray-400 text-center">
+        <p className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
           Already have an account?{" "}
           <Link href="/signin" className="text-blue-600 hover:underline">
             Log in
           </Link>
         </p>
 
-        <p className="mt-4 text-xs text-gray-500 dark:text-gray-400 text-center">
+        <p className="mt-4 text-center text-xs text-gray-500 dark:text-gray-400">
           By signing up, you agree to our{" "}
           <Link href="/terms" className="text-blue-600 hover:underline">
             Terms of Service
@@ -248,7 +248,7 @@ const SignUp = () => {
         <div className="mt-6 text-center">
           <Link
             href="/"
-            className="text-blue-600 text-sm flex items-center justify-center gap-2 hover:underline"
+            className="flex items-center justify-center gap-2 text-sm text-blue-600 hover:underline"
           >
             <ArrowLeft /> Back to Home
           </Link>

@@ -7,8 +7,8 @@ import { Suspense } from "react";
 
 const Dashboard = () => {
   return (
-    <section className="p-6 min-h-screen bg-gray-100 dark:bg-gray-900">
-      <div className="flex flex-col items-center justify-between my-3">
+    <section className="min-h-screen bg-gray-100 p-6 dark:bg-gray-900">
+      <div className="my-3 flex flex-col items-center justify-between">
         <NewQueueButtonWithForm />
 
         {/* Search bar */}
@@ -18,7 +18,7 @@ const Dashboard = () => {
 
         <section className="mt-8 w-full max-w-7xl">
           <Suspense fallback={<OrgQueueCardSkeleton />}>
-            <div className="grid md:grid-cols-2 2xl:grid-cols-3 gap-8">
+            <div className="grid gap-8 md:grid-cols-2 2xl:grid-cols-3">
               <OrgQueueCard />
               <OrgQueueCard />
               <OrgQueueCard />
@@ -29,7 +29,7 @@ const Dashboard = () => {
       </div>
 
       {/* Pagination */}
-      <div className="w-full flex justify-center items-center mt-20 mb-10">
+      <div className="mt-20 mb-10 flex w-full items-center justify-center">
         <Pagination totalCount={30} />
       </div>
     </section>

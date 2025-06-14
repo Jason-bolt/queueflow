@@ -34,9 +34,9 @@ export default function RootLayout({
           <AuthProvider>
             {children}
             {/* Footer */}
-            <footer className="bg-gray-900 text-white py-16">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid md:grid-cols-4 gap-8 text-center md:text-start">
+            <footer className="bg-gray-900 py-16 text-white">
+              <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div className="grid gap-8 text-center md:grid-cols-4 md:text-start">
                   <div className="space-y-4">
                     <div className="text-2xl font-bold text-blue-400">
                       QueueFlow
@@ -78,7 +78,7 @@ export default function RootLayout({
                   </div>
                 </div>
 
-                <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
+                <div className="mt-12 border-t border-gray-800 pt-8 text-center text-gray-400">
                   <p>&copy; 2024 QueueFlow. All rights reserved.</p>
                 </div>
               </div>
