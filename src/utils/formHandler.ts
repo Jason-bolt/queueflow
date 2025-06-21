@@ -1,6 +1,7 @@
 import { formOptions } from "@tanstack/react-form/nextjs";
 import {
   NewQueueSchema,
+  OrganizationSettingsSchema,
   SigninUserSchema,
   SignupUserSchema,
 } from "./zodSchemas";
@@ -32,14 +33,25 @@ export const NewQueueFormOpts = formOptions({
   defaultValues: {
     name: "",
     isEmailRequired: false,
-    maxSize: "1",
+    maxSize: 1,
     description: "",
     expiresAt: getFormattedDateFromTimestamp(
-      Date.now() + 7 * 24 * 60 * 60 * 1000
+      Date.now() + 7 * 24 * 60 * 60 * 1000,
     ), // Default to one week from now
     queuePrefix: "QF",
   },
   validators: {
     onSubmit: NewQueueSchema,
+  },
+});
+
+export const organizationSettingsFormOpts = formOptions({
+  defaultValues: {
+    name: "",
+    email: "",
+    defaultQueuePrefix: "QF", // Optional field
+  },
+  validators: {
+    onSubmit: OrganizationSettingsSchema,
   },
 });

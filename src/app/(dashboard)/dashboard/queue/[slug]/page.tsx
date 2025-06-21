@@ -2,7 +2,8 @@ import Pagination from "@/components/client/Pagination";
 import QueueMemberComponent from "@/components/client/QueueMemberComponent";
 import QueueStat from "@/components/client/QueueStat";
 import ToggleButton from "@/components/client/ToggleButton";
-import { QrCode, SquareChartGantt } from "lucide-react";
+import ViewQrCode from "@/components/client/ViewQrCode";
+import { SquareChartGantt } from "lucide-react";
 import React from "react";
 
 const ManageQueue = () => {
@@ -25,10 +26,8 @@ const ManageQueue = () => {
             <SquareChartGantt />
             <span className="ml-2 text-sm">Export CSV</span>
           </button>
-          <button className="flex items-center justify-center rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white transition-colors duration-200 hover:cursor-pointer hover:bg-blue-700">
-            <QrCode />
-            <span className="ml-2 text-sm">View QR Code</span>
-          </button>
+          <ViewQrCode />
+          
         </div>
         {/* Additional management features can be added here */}
       </div>

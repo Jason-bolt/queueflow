@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { createUserIfNotExists } from "@/actions/fireBaseActions";
 import { useAuth } from "@/app/contexts/AuthProvider";
-import auth from "@/utils/firebase";
+import { auth } from "@/utils/firebase";
 import { signUpFormOpts } from "@/utils/formHandler";
 import { useForm } from "@tanstack/react-form";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -33,9 +34,15 @@ const SignUp = () => {
 
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      createUserIfNotExists(
+        result.user.uid || "",
+        result.user.email || "",
+        result.user.displayName || "",
+      );
+      console.log("Google Sign-in Result:", result);
       // Redirect after successful sign-in
-      router.push("/dashboard"); // Replace with your desired redirect path
+      // router.push("/dashboard"); // Replace with your desired redirect path
     } catch (err: any) {
       console.error("Google Sign-in Error:", err);
       // TODO: Handle errors (e.g., user cancels popup, network issues)

@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
+import { createUserIfNotExists } from "@/actions/fireBaseActions";
 import { useAuth } from "@/app/contexts/AuthProvider";
-import auth from "@/utils/firebase";
+import { auth } from "@/utils/firebase";
 import { signInFormOpts } from "@/utils/formHandler";
 import { useForm } from "@tanstack/react-form";
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
@@ -17,6 +18,7 @@ const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const [, setError] = useState<string | null>(null);
   const { signInWithPassword, user, loading: userLoading } = useAuth();
+
   const form = useForm({
     ...signInFormOpts,
     onSubmit: async (values) => {
@@ -33,7 +35,12 @@ const SignIn = () => {
 
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      createUserIfNotExists(
+        result.user.uid || "",
+        result.user.email || "",
+        result.user.displayName || "",
+      );
       // Redirect after successful sign-in
       router.push("/dashboard"); // Replace with your desired redirect path
     } catch (err: any) {

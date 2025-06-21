@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const passwordValidation = new RegExp(
-  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/
+  /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/,
 );
 
 export const SignupUserSchema = z
@@ -34,10 +34,16 @@ export const SigninUserSchema = z.object({
 });
 
 export const NewQueueSchema = z.object({
-  name: z.string(),
+  name: z.string().trim().min(1, "Queue name is required"),
   description: z.string().optional(),
   isEmailRequired: z.boolean(),
-  maxSize: z.string(),
+  maxSize: z.number().min(1, "Max size must be at least 1"),
   expiresAt: z.coerce.date().optional(),
   queuePrefix: z.string().optional(),
+});
+
+export const OrganizationSettingsSchema = z.object({
+  name: z.string().trim().min(1, "Organization name is required"),
+  email: z.string().email("Invalid email address").trim(),
+  defaultQueuePrefix: z.string().max(5),
 });

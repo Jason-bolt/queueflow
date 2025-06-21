@@ -8,12 +8,35 @@ import {
   signOut,
   User,
 } from "firebase/auth";
-import auth from "@/utils/firebase";
+import { auth } from "@/utils/firebase";
 import { useRouter } from "next/navigation";
+
+interface IOrgUser {
+  id: string;
+  organizationId?: string;
+  name?: string;
+  email: string;
+  role?: string;
+  priviledges?: string[];
+  createdAt: string;
+}
+
+interface IOrganizationData {
+  id: string;
+  name: string;
+  email: string;
+  multiQueueLimit?: number;
+  defaultQueuePrefix?: string;
+  subscription?: string;
+  createdAt?: string;
+}
 
 interface AuthContextType {
   user: User | null;
-  setUser: (user: User | null) => void;
+  orgUser: IOrgUser | null;
+  setOrgUser: (orgUser: IOrgUser | null) => void;
+  organization: IOrganizationData | null;
+  setOrganization: (organization: IOrganizationData | null) => void;
   loading: boolean;
   signInWithPassword: (email: string, password: string) => Promise<void>;
   signUpWithPassword: (email: string, password: string) => Promise<void>;
@@ -21,8 +44,11 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType>({
+  orgUser: null,
+  setOrgUser: () => {},
+  organization: null,
+  setOrganization: () => {},
   user: null,
-  setUser: () => {},
   loading: true,
   signInWithPassword: async () => {},
   signUpWithPassword: async () => {},
@@ -30,9 +56,18 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 import { ReactNode } from "react";
+import {
+  createUser,
+  fetchUser,
+  fetchUserOrganization,
+} from "@/actions/fireBaseActions";
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [orgUser, setOrgUser] = useState<IOrgUser | null>(null);
+  const [organization, setOrganization] = useState<IOrganizationData | null>(
+    null,
+  );
   const [loading, setLoading] = useState(true);
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
@@ -49,6 +84,22 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    if (user) {
+      // Fetch organization and orgUser data when user is authenticated
+      const fetchOrgData = async () => {
+        const orgUserData = await fetchUser(user.uid);
+        const orgData = await fetchUserOrganization(user.uid);
+        setOrgUser(orgUserData!);
+        setOrganization(orgData!);
+      };
+      fetchOrgData();
+    } else {
+      setOrgUser(null);
+      setOrganization(null);
+    }
+  }, [user]);
+
   const signInWithPassword = async (email: string, password: string) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
@@ -59,7 +110,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 
   const signUpWithPassword = async (email: string, password: string) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const user = await createUserWithEmailAndPassword(auth, email, password);
+      if (user) {
+        createUser(user.user.email || "", user.user.displayName || "");
+      }
     } catch (error) {
       console.error("Error signing up:", error);
     }
@@ -76,15 +130,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   // Only render children after mounted and loading is false
-  if (!mounted || loading) {
-    return null; // Or a spinner
+  if (!mounted || loading || !orgUser) {
+    console.log("AuthProvider: Loading or not mounted");
+    return null; // TODO: Or a spinner
   }
 
   return (
     <AuthContext.Provider
       value={{
+        orgUser,
+        setOrgUser,
+        organization,
+        setOrganization,
         user,
-        setUser,
         loading,
         signInWithPassword,
         signUpWithPassword,
@@ -127,7 +185,7 @@ export const ProtectedRoutes = ({
 };
 
 export const ClosedRouteToLoggedInUsers = (
-  Component: React.ComponentType<any>
+  Component: React.ComponentType<any>,
 ) => {
   return function WrappedComponent(props: any) {
     const router = useRouter();

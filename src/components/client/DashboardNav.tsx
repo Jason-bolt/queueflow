@@ -11,20 +11,33 @@ import {
   ChevronDown,
   Users,
   Bell,
+  BriefcaseBusiness,
 } from "lucide-react";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
 import { useAuth } from "@/app/contexts/AuthProvider";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 const DashboardNav = ({ children }: { children: React.ReactNode }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const [organizationSetupNotDone, setOrganizationSetupNotDone] =
+    useState(true);
   const profileRef = useRef<HTMLDivElement>(null);
-  const { signOutUser } = useAuth();
+  const { signOutUser, user, orgUser } = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
 
   const [pageTitle, setPageTitle] = useState("Dashboard");
+
+  useEffect(() => {
+    if (!orgUser?.organizationId) {
+      router.replace("/organization_management");
+    }
+
+    setOrganizationSetupNotDone(!!orgUser?.organizationId);
+  }, [user, orgUser]);
 
   useEffect(() => {
     // Set the page title based on the current route
@@ -39,6 +52,9 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
           break;
         case "/user_management":
           setPageTitle("User Management");
+          break;
+        case "/organization_management":
+          setPageTitle("Organization Setup");
           break;
         case "/settings":
           setPageTitle("Settings");
@@ -87,8 +103,12 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
     {
       section: "Settings",
       items: [
-        ,
         { icon: Users, label: "User Management", href: "/user_management" },
+        {
+          icon: BriefcaseBusiness,
+          label: "Organization Setup",
+          href: "/organization_management",
+        },
       ],
     },
   ];
@@ -154,6 +174,19 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
           />
         )}
 
+        {!organizationSetupNotDone && (
+          <div className="fixed right-4 bottom-4 z-50">
+            <Link
+              href="/business_setup"
+              className={`shadow-lg"bg-amber-600 dark:hover:bg-amber-600" flex items-center justify-center rounded-full px-4 py-2 text-white hover:bg-amber-700 dark:bg-amber-500`}
+            >
+              <span className="text-sm font-medium">
+                Complete Organization Setup
+              </span>
+            </Link>
+          </div>
+        )}
+
         {/* Main Content */}
         <div className="flex flex-1 flex-col overflow-hidden">
           {/* Top Header */}
@@ -182,10 +215,12 @@ const DashboardNav = ({ children }: { children: React.ReactNode }) => {
                   className="flex items-center space-x-2 rounded-lg p-2 transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
                 >
                   <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-600 text-sm font-medium text-white">
-                    JD
+                    {orgUser?.name
+                      ? `${orgUser.name.split(" ")?.[0].charAt(0).toUpperCase() + orgUser.name.split(" ")?.[1].charAt(0).toUpperCase()}`
+                      : "JD"}
                   </div>
                   <span className="hidden text-sm font-medium text-gray-700 sm:block dark:text-gray-300">
-                    John Doe
+                    {orgUser?.name || "John Doe"}
                   </span>
                   <ChevronDown
                     size={16}

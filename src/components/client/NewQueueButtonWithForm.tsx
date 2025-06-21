@@ -152,7 +152,7 @@ const NewQueueButtonWithForm = () => {
                       type="number"
                       id="maxSize"
                       value={field.state.value}
-                      onChange={(e) => field.handleChange(e.target.value)}
+                      onChange={(e) => field.handleChange(e.target.valueAsNumber)}
                       min={1}
                       max={1000}
                       onBlur={field.handleBlur}
